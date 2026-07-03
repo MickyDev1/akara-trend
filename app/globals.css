@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff7ed;
+  --foreground: #24150f;
 }
 
 @theme inline {
@@ -12,15 +12,163 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #f97316;
+  color: #fff7ed;
+}
+
+button,
+a,
+input,
+textarea {
+  letter-spacing: 0;
+}
+
+.hero-photo {
+  animation: hero-breathe 12s ease-in-out infinite alternate;
+}
+
+.rise-in {
+  animation: rise-in 760ms ease both;
+}
+
+.rise-in:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.rise-in:nth-child(3) {
+  animation-delay: 150ms;
+}
+
+.rise-in:nth-child(4) {
+  animation-delay: 220ms;
+}
+
+.akara-motion {
+  bottom: 8rem;
+  height: 12rem;
+  pointer-events: none;
+  position: absolute;
+  right: clamp(1rem, 7vw, 8rem);
+  width: min(36vw, 24rem);
+  z-index: 5;
+}
+
+.akara-ball {
+  animation: bounce-roll 4.2s ease-in-out infinite;
+  background:
+    radial-gradient(circle at 35% 28%, #fde68a 0 8%, transparent 9%),
+    radial-gradient(circle at 60% 68%, #7c2d12 0 11%, transparent 12%),
+    radial-gradient(circle at 38% 70%, #92400e 0 10%, transparent 11%),
+    radial-gradient(circle at 48% 45%, #d97706, #92400e 58%, #431407 100%);
+  border: 2px solid rgba(255, 237, 213, 0.42);
+  border-radius: 999px;
+  box-shadow: 0 1.2rem 3rem rgba(67, 20, 7, 0.32);
+  display: block;
+  position: absolute;
+}
+
+.akara-ball-one {
+  height: 5.5rem;
+  left: 1rem;
+  top: 2rem;
+  width: 5.5rem;
+}
+
+.akara-ball-two {
+  animation-delay: 700ms;
+  height: 4rem;
+  right: 4rem;
+  top: 0.5rem;
+  width: 4rem;
+}
+
+.akara-ball-three {
+  animation-delay: 1.3s;
+  bottom: 1.5rem;
+  height: 4.8rem;
+  right: 1rem;
+  width: 4.8rem;
+}
+
+@keyframes hero-breathe {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.045);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-roll {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  45% {
+    transform: translate3d(1.1rem, -1.5rem, 0) rotate(18deg);
+  }
+
+  70% {
+    transform: translate3d(-0.6rem, 0.45rem, 0) rotate(-14deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .akara-motion {
+    bottom: 4rem;
+    opacity: 0.74;
+    right: 0.5rem;
+    width: 13rem;
+  }
+
+  .akara-ball-one {
+    height: 4.2rem;
+    width: 4.2rem;
+  }
+
+  .akara-ball-two {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .akara-ball-three {
+    height: 3.6rem;
+    width: 3.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
 }
